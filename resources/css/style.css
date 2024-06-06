@@ -1,0 +1,19 @@
+.bg-fucsia{
+    color: rgb(244, 42, 183);
+}
+
+.bg-fucsiaa{
+    background-color: rgb(244, 42, 183);
+}
+
+
+.bg-gray{
+    background-color: rgba(139, 139, 139, 0.86);
+}
+
+.img-fluid{
+    height: 50vh;
+    width: 40vw;
+}
+
+
