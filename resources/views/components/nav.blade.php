@@ -38,17 +38,29 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Il tuo profilo</a></li>
                             <li>
-                                <a class="dropdown-item" href="{{route('article.index')}}">Carrello, index<i class="fa-solid fa-cart-shopping"></i></a>
+                                <a class="dropdown-item" href="{{ route('article.index') }}">Carrello, index<i
+                                        class="fa-solid fa-cart-shopping"></i></a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
-                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             </li>
                             <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
                                 @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
                             </form>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li class="text-center">
+                                <form method="POST" action="{{ route('user.delete') }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Elimina account</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 @endauth
@@ -56,5 +68,7 @@
         </div>
         <div style="width:102px"></div>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </nav>

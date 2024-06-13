@@ -9,39 +9,56 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-8 border shadow rounded">
-                <form method="POST"  action="{{route('article.store')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nome piano allenamento/alimetare</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title')}}">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                            value="{{ old('title') }}">
                         @error('title')
-                        <div class="alert alert-danger">{{$message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Descrizione</label>
-                        <textarea name="body" id="" cols='30' class="form-control @error('body') is-invalid 
-                        @enderror" rows='10'>{{old('body')}}</textarea>
+                        <textarea name="body" id="" cols='30'
+                            class="form-control @error('body') is-invalid 
+                        @enderror" rows='10'>{{ old('body') }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Il tuo nome</label>
-                        <input type="text" class="form-control 
-                        @error('name') is-invalid @enderror" 
-                        name="name" value="{{old('name')}}">
+                        <input type="text"
+                            class="form-control 
+                        @error('name') is-invalid @enderror"
+                            name="name" value="{{ old('name') }}">
                         @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Img</label>
-                            <input type="file" class="form-control" name="img">
-                            @error('img')
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tag:</label>
+                        <select name="tag_id[]" id="" class="form-control" multiple>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Img</label>
+                        <input type="file" class="form-control" name="img">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Img</label>
+                        <input type="file" class="form-control" name="img">
+                        @error('img')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
-    </x-layout>
+    </div>
+</x-layout>

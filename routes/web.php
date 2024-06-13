@@ -22,3 +22,5 @@ Route::delete('/article/destroy/{article}', [ArticleController::class, 'destroy'
 
 Route::get('/article/index', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/user/article/{user}', [ArticleController::class,'getArtByUser'])->name('article.user');
+
+Route::delete('/user/delete', [PublicController::class, 'userDelete'])->name('user.delete');

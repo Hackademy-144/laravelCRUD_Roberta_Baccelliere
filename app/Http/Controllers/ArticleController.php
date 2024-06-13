@@ -8,12 +8,12 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
 
-    public function getArtByUser(User
-    $user)
+    public function getArtByUser(User $user)
     {
         return view('article.artByUser', compact('user'));
     }
@@ -29,11 +29,11 @@ class ArticleController extends Controller
         return view("article.create");
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
 
         // MASS ASSIGNMENT
-        Auth::user()->articles()->create(
+        $article = Auth::user()->articles()->create(
             [
                 'title' => $request->input('title'),
                 'name' => $request->input('name'),
@@ -41,6 +41,12 @@ class ArticleController extends Controller
                 'img' => $request->has('img') ? $request->file('image')->store('public/productImg') : '/img/none.jpg',
             ]
         );
+
+        foreach ($request->input('tag_id') as $tag) {
+            $article->tags()->attach($tag);
+            // attach è un metodo della relazione belongsToMany che crea una nuova associazione nella tabella Pivot con gli id dell'oggetto su cui richiamo $article
+        }
+
         return redirect(route('plans'))->with('message', 'Articolo publiccato con successo');
     }
 

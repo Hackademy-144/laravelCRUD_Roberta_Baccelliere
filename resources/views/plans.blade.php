@@ -46,6 +46,7 @@
             <h1 class="col-8 bg-fucsiaa mt-3 m-5 text-white d-flex justify-content-center">PIANI CREATI DALLA COMMUNITY
                 FREE</h1>
             @foreach ($articles as $article)
+                {{-- @dd($article->user) --}}
                 <div class="col-12 col-md-4 m-1 text-center d-flex justify-content-center justify-content-space-around">
                     <div class="card" style="width: 18rem;">
                         <img src="{{ Storage::url($article->img) }}" class="card-img-top" alt="...">
@@ -53,7 +54,12 @@
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">Pubblicato da:
                                 <a
-                                    href="{{ route('article.user', ['user' => $article->user]) }}">{{ $article->name }}</a>
+                                    href="{{ route('article.user', ['user' => $article->user_id]) }}">{{ $article->name }}</a>
+                            </p>
+                            <p class="card-text small">
+                                @foreach ($article->tags as $tag)
+                                    <span>#{{ $tag->name }}</span>
+                                @endforeach
                             </p>
                             {{-- <p>Pubblicato da {{$article->name}}</p> --}}
                             <p class="card-text">Descrizione: {{ $article->body }}</p>

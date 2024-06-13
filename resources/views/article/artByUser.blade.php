@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">Pubblicato da: <a
-                                    href="{{ route('article.user', ['user' => $article->user]) }}">{{ $article->name }}</a>
+                                    href="{{ route('article.user', ['user' => $article->user]) }}">{{ $user->name }}</a>
                             </p>
                             <p class="card-text">Descrizione:
                                 {{ $article->body }}</p>
